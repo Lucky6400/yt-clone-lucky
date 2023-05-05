@@ -24,4 +24,13 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  margin: 0;
+  width: 100% !important;
+}
+*{
+  box-sizing: border-box;
+}
+
+.searchInput {
+  width: 50vw;
 }
