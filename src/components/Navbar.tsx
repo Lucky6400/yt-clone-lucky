@@ -18,6 +18,11 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import Sidebar from './Sidebar';
 import ControlPointOutlinedIcon from '@mui/icons-material/ControlPointOutlined';
 import { useRouter } from 'next/router';
+import Popover from '@mui/material/Popover';
+import NotificationCard from './NotificationCard';
+import { Divider } from '@mui/material';
+import { notifications } from '@/data/videos';
+import { SettingsOutlined } from '@mui/icons-material';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -60,6 +65,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+    const router = useRouter();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
         React.useState<null | HTMLElement>(null);
@@ -85,7 +91,23 @@ export default function Navbar() {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
+
+    const [popanchorEl, setPopAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setPopAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setPopAnchorEl(null);
+    };
+
+    const open = Boolean(popanchorEl);
+    const id = open ? 'simple-popover' : undefined;
+
     const menuId = 'primary-search-account-menu';
+
+
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
@@ -109,55 +131,58 @@ export default function Navbar() {
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-        >
-            <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <ControlPointOutlinedIcon />
-                </IconButton>
-                <p>Upload a video</p>
-            </MenuItem>
-            <MenuItem>
-                <IconButton
-                    size="large"
-                    aria-label="show 17 new notifications"
-                    color="inherit"
-                >
-                    <Badge badgeContent={17} color="error">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <p>Notifications</p>
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
-        </Menu>
+        <>
+            <Menu
+                anchorEl={mobileMoreAnchorEl}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                id={mobileMenuId}
+                keepMounted
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                open={isMobileMenuOpen}
+                onClose={handleMobileMenuClose}
+            >
+                <MenuItem>
+                    <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                        <ControlPointOutlinedIcon />
+                    </IconButton>
+                    <p>Upload a video</p>
+                </MenuItem>
+                <MenuItem>
+                    <IconButton
+                        size="large"
+                        aria-label="show 17 new notifications"
+                        color="inherit"
+                        onClick={handleClick}
+                    >
+                        <Badge badgeContent={17} color="error">
+                            <NotificationsIcon />
+                        </Badge>
+                    </IconButton>
+                    <p>Notifications</p>
+                </MenuItem>
+                <MenuItem onClick={handleProfileMenuOpen}>
+                    <IconButton
+                        size="large"
+                        aria-label="account of current user"
+                        aria-controls="primary-search-account-menu"
+                        aria-haspopup="true"
+                        color="inherit"
+                    >
+                        <AccountCircle />
+                    </IconButton>
+                    <p>Profile</p>
+                </MenuItem>
+            </Menu>
+        </>
     );
 
-    const router = useRouter();
+    
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -194,12 +219,13 @@ export default function Navbar() {
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                        <ControlPointOutlinedIcon />
+                            <ControlPointOutlinedIcon />
                         </IconButton>
                         <IconButton
                             size="large"
                             aria-label="show 17 new notifications"
                             color="inherit"
+                            onClick={handleClick}
                         >
                             <Badge badgeContent={17} color="error">
                                 <NotificationsIcon />
@@ -234,7 +260,49 @@ export default function Navbar() {
             {renderMobileMenu}
             {renderMenu}
 
-           {sidebarOpen ?  <Sidebar /> : "" }
+            {sidebarOpen ? <Sidebar /> : ""}
+
+            <Popover
+                id={id}
+                open={open}
+                anchorEl={popanchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                PaperProps={{
+                    style: {
+                        backgroundColor: '#404040',
+                        width: '350px',
+                        maxWidth: '100%'
+                    }
+                }}
+            >
+                <Box width="100%" display={"flex"} justifyContent={"space-between"} alignItems={"center"} paddingX={"10px"}>
+                    <Typography variant="h6" color="white">
+                        Notifications
+                    </Typography>
+                    <IconButton>
+                        <SettingsOutlined sx={{ color: 'white'}}/>
+                    </IconButton>
+                </Box>
+                <Divider sx={{ backgroundColor: '#fff' }} />
+                {notifications.map((item, index) => (
+                    <React.Fragment key={index + item.id}>
+
+                        <NotificationCard
+                            avatarSrc=""
+                            title={item.title}
+                            thumbnailSrc={item.thumbnailSrc}
+                        />
+                        {index !== notifications.length - 1 ?
+                        <Divider variant="middle" sx={{ backgroundColor: '#818181', color: '#fff' }} light />   
+                        : <></>}
+                        
+                    </React.Fragment>
+                ))}
+            </Popover>
         </Box>
     );
 }

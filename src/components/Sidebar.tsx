@@ -20,6 +20,7 @@ import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import PlaylistPlayIcon from '@mui/icons-material/PlaylistPlay';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import ControlPointOutlinedIcon from '@mui/icons-material/ControlPointOutlined';
+import { useRouter } from 'next/router';
 
 export default function Sidebar() {
   const [open, setOpen] = React.useState(true);
@@ -27,6 +28,8 @@ export default function Sidebar() {
   const handleClick = () => {
     setOpen(!open);
   };
+
+  const router = useRouter();
 
   return (
     <Box sx={{ position: 'fixed', left: 0, top: '60px', backgroundColor: '#000', width: '300px', zIndex: 9999, minHeight: '100vh' }}>
@@ -52,7 +55,7 @@ export default function Sidebar() {
         </ListItemIcon>
         <ListItemText primary="Shorts" />
       </ListItemButton>
-      <ListItemButton>
+      <ListItemButton onClick={() => router.push('/subscriptions')}>
         <ListItemIcon>
           <SubscriptionsIcon sx={{ color: '#fff'}} />
         </ListItemIcon>
