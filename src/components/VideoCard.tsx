@@ -47,7 +47,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
           </Typography>
         </Box>
 
-        <IconButton>
+        <IconButton onClick={e => e.stopPropagation()}>
           <MoreVertIcon sx={{ color: '#fff' }} />
         </IconButton>
       </CardContent>

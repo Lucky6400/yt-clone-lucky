@@ -208,12 +208,17 @@ export default function Navbar() {
                         NEWTUBE
                     </Typography>
                     <Search>
-                        <SearchIconWrapper>
+                        <SearchIconWrapper >
                             <SearchIcon />
                         </SearchIconWrapper>
                         <StyledInputBase
                             placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
+                            inputProps={{ 'aria-label': 'search', onKeyUp: (e) => {
+                                console.log(e.key)
+                                if(e.key === 'Enter') {
+                                    router.push('/subscriptions')
+                                }
+                            } }}
                         />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
