@@ -291,7 +291,7 @@ export default function Navbar() {
                         <SettingsOutlined sx={{ color: 'white'}}/>
                     </IconButton>
                 </Box>
-                <Divider sx={{ backgroundColor: '#fff' }} />
+                <Divider sx={{ backgroundColor: '#818080' }} />
                 {notifications.map((item, index) => (
                     <React.Fragment key={index + item.id}>
 
@@ -300,9 +300,7 @@ export default function Navbar() {
                             title={item.title}
                             thumbnailSrc={item.thumbnailSrc}
                         />
-                        {index !== notifications.length - 1 ?
-                        <Divider variant="middle" sx={{ backgroundColor: '#818181', color: '#fff' }} light />   
-                        : <></>}
+                        
                         
                     </React.Fragment>
                 ))}

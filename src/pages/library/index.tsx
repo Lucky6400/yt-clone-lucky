@@ -10,7 +10,7 @@ const Library: React.FC = () => {
     return (
         <Container>
             <Navbar />
-            
+
             <Data icon={<History/>} data={videos} title="History"/>
 
             <Data icon={<AccessTime/>} data={videos} title="Watch later"/>

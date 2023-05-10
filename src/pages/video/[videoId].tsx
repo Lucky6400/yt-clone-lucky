@@ -16,17 +16,16 @@ const useStyles: any = makeStyles((theme: Theme) => ({
         alignItems: 'flex-start',
     },
     videoContainer: {
-        flex: 1,
-        marginTop: '80px'
+        width: '100%',
+        marginTop: '80px',
+        height: 'max-content',
     },
     infoContainer: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         flexWrap: "wrap",
-        width: '60%',
         padding: '10px',
-        height: '50vh',
         overflowY: 'visible',
     },
     inputField: {
@@ -52,22 +51,8 @@ const useStyles: any = makeStyles((theme: Theme) => ({
 const VideoPage: React.FC = () => {
     const classes = useStyles();
 
-    const [liked, setLiked] = useState<boolean>(false);
-    const [disliked, setDisliked] = useState<boolean>(false);
-
-    const handleLike = () => {
-        setLiked(true);
-        setDisliked(false);
-    };
-
-    const handleDislike = () => {
-        setDisliked(true);
-        setLiked(false);
-    };
-
-
     return (
-        <Box>
+        <Box width="100vw">
             <Navbar />
             <div className={classes.videoContainer}>
                 <Card>
@@ -83,10 +68,17 @@ const VideoPage: React.FC = () => {
                     />
                 </Card>
             </div>
-            <Box display="flex" justifyContent={"space-between"}>
+            <Box display="flex" justifyContent={"space-between"} flexWrap={"wrap"}>
 
                 {/* Left */}
-                <div className={classes.infoContainer}>
+                <Box sx={{ 
+                    width: {
+                        xs: '100vw',
+                        sm: '100vw',
+                        md: '60%'
+                    },
+                    height: 'max-content'
+                }} className={classes.infoContainer}>
 
                     {/* Title Section */}
                     <Typography width={"100%"} marginY={"10px"} variant="h5">Never Gonna Give You Up</Typography>
@@ -103,10 +95,18 @@ const VideoPage: React.FC = () => {
                     {/* Comments section */}
                     <CommentSection />
 
-                </div>
+                </Box>
                 {/*********/}
 
-                <Box width="35%">
+                <Box
+                display={"flex"}
+                flexDirection={"column"}
+                alignItems={"center"}
+                sx={{ width: {
+                    xs: "100%",
+                    sm: "100%",
+                    md: "35%"
+                }}}>
                     <Typography width={"100%"} marginY={"20px"} variant="h5">Recommended for you</Typography>
                     {recommendedVideos.map((item, index) => (
 

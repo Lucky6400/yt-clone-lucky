@@ -42,8 +42,11 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
     <Box className={classes.root}>
       <Avatar src={avatarSrc} className={classes.avatar} />
       <Typography fontSize={"14px"} color={"white"} className={classes.title}>
-        {title}
+        {title} <br />
+        <small style={{ color: '#aba7a7'}}>1 day ago</small>
+
       </Typography>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={thumbnailSrc} alt="Thumbnail" className={classes.thumbnail} />
     </Box>
   );

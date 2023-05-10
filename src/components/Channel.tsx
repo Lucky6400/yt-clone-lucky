@@ -10,7 +10,7 @@ const Channel: React.FC = () => {
                 <Typography fontSize={12} color={"#808080"} component={"small"}>1.23M subscribers</Typography>
             </Box>
 
-            <Button variant="contained" color="error" sx={{ borderRadius: '999px', marginLeft: '60px' }}>
+            <Button variant="contained" color="error" sx={{ borderRadius: '999px', marginLeft: '60px' }} size='small'>
                 Subscribe
             </Button>
         </Box>

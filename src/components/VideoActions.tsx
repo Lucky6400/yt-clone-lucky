@@ -4,7 +4,9 @@ import React from 'react'
 
 const VideoActions: React.FC = () => {
     return (
-        <Box display="flex" gap="10px">
+        <Box display="flex" flexWrap={"wrap"} gap="10px" sx={{ width: {
+            xs: '100%'
+        } }}>
             <Button startIcon={<ThumbUp />} sx={{
                 ":disabled": {
                     color: 'royalblue'

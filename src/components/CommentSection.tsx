@@ -31,7 +31,7 @@ const CommentSection: React.FC = () => {
                 219 Comments
             </Typography>
 
-            <Box display="flex" alignItems={"center"} justifyContent={"space-around"}>
+            <Box display="flex" gap={"10px"} alignItems={"center"} justifyContent={"space-around"}>
                 <Avatar />
                 <CssTextField variant="standard" InputLabelProps={{
                     style: {

@@ -36,7 +36,7 @@ export default function YoutubeComment({ author, content, avatar }: Props) {
     const classes = useStyles();
 
     return (
-        <Box display={"flex"} flexWrap={"wrap"} alignItems={"center"} marginBottom="10px">
+        <Box display={"flex"} alignItems={"center"} marginBottom="10px">
             <Avatar alt={author} src={avatar} className={classes.avatar} />
             <div className={classes.commentText}>
                 <Typography variant="body2" component="span">

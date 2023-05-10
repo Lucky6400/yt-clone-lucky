@@ -22,10 +22,11 @@ const DarkVideoCard: React.FC<DarkVideoCardProps> = ({
         backgroundColor: "#000",
         color: "#fff",
         padding: "0",
-        marginY: '10px'
+        marginY: '10px',
+        width: '80%'
       }}
     >
-      <Grid container spacing={2}>
+      <Grid>
         <Grid item xs={12} md={4}>
           <Image
             height={300}
