@@ -64,7 +64,7 @@ export default function Sidebar() {
 
       <Divider  sx={{ backgroundColor: '#808080', width: '90%', margin: '10px auto' }} />
 
-      <ListItemButton>
+      <ListItemButton onClick={() => router.push('/library')}>
         <ListItemIcon>
           <VideoLibraryIcon sx={{ color: '#fff'}} />
         </ListItemIcon>
