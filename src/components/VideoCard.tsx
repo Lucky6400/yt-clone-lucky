@@ -4,8 +4,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Avatar, Box, Button, CardActionArea, CardActions, Icon, IconButton } from '@mui/material';
-import { Image, PlaylistPlay } from '@mui/icons-material';
+import { Avatar, Box, IconButton } from '@mui/material';
+import { PlaylistPlay } from '@mui/icons-material';
 import { NextRouter, useRouter } from 'next/router';
 
 type VideoCardProps = {
@@ -33,7 +33,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, cardType }) => {
       {cardType && cardType === "Playlist" ?
         <Box position={"absolute"} top="0" right="0" width="50%" display="flex" gap="10px" justifyContent="center" alignItems="center" sx={{ backgroundColor: '#40404079', height: '140px', color: "#fff", fontSize: "22px" }}>
 
-          <PlaylistPlay fontSize='large'/>
+          <PlaylistPlay fontSize='large' />
 
           <Typography color={"#fff"} fontWeight="bold" fontSize="20px">
             112
@@ -48,7 +48,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, cardType }) => {
       <CardMedia
         component="img"
         height="140"
-        sx={{width: '100%'}}
+        sx={{ width: '100%' }}
         image={thumbnail}
         alt="green iguana"
       />
